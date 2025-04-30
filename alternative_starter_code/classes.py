@@ -31,6 +31,11 @@ class Character:
         if self.health > self.max_health:
             self.health = self.max_health
         print(f"{self.name} heals for {heal_amount} health! Current health: {self.health}")
+        
+    def double_damage(self, opponent):
+        damage = (random.randint(5, self.attack_power)) * 2
+        print(f"{self.name} unleashes a powerful strike on {opponent.name} for {damage} damage!")
+        opponent.receive_attack(damage)
 
     def display_stats(self):
         print(f"{self.name}'s Stats - Health: {self.health}/{self.max_health}, Attack Power: {self.attack_power}")
@@ -51,9 +56,7 @@ class Barbarian(Character):
         if action =="1":
             print(f"\n{self.name} used Rage Fury!")
                         
-            damage = (random.randint(5, self.attack_power)) * 2
-            opponent.health -= damage
-            print(f"{self.name} attacks {opponent.name} for {damage} damage!")
+            self.double_damage(opponent)
             
         elif action == "2":
             print(f"\n{self.name} used War Cry!")
@@ -70,7 +73,7 @@ class Rogue(Character):
         
     def special_ability(self, opponent):
         print("\nSpecial Abilities:")
-        print("1. Backstab - Deals massive damage from behind, catching the enemy off gaurd.")
+        print("1. Backstab - Deals massive damage from behind, catching the enemy off guard.")
         print("2. Evasive Flip - Performs lightning-fast roll to dodge next attack, reducing damage.")
         
         action = input("Which ability would you like to use? (1 or 2): ")
@@ -78,10 +81,8 @@ class Rogue(Character):
         if action =="1":
             print(f"\n{self.name} used Backstab!")
             
-            damage = (random.randint(5, self.attack_power)) * 2
-            opponent.health -= damage
-            print(f"{self.name} attacks {opponent.name} for {damage} damage!")
-            
+            self.double_damage(opponent)
+
         elif action == "2":
             print(f"\n{self.name} used Evasive Flip!")
             
@@ -105,9 +106,7 @@ class Ranger(Character):
         if action =="1":
             print(f"{self.name} used Arrow Barrage!")
             
-            damage = (random.randint(5, self.attack_power)) * 2
-            opponent.health -= damage
-            print(f"{self.name} attacks {opponent.name} for {damage} damage!")
+            self.double_damage(opponent)
             
         elif action == "2":
             print(f"{self.name} used Nature's Shield!")
@@ -133,9 +132,7 @@ class Sorcerer(Character):
         if action =="1":
             print(f"{self.name} used Fireball!")
             
-            damage = (random.randint(5, self.attack_power)) * 2
-            opponent.health -= damage
-            print(f"{self.name} attacks {opponent.name} for {damage} damage!")
+            self.double_damage(opponent)
             
         elif action == "2":
             print(f"{self.name} used Magic Shield!")
@@ -161,9 +158,7 @@ class Bard(Character):
         if action =="1":
             print(f"{self.name} used Heroic Call!")
             
-            damage = (random.randint(5, self.attack_power)) * 2
-            opponent.health -= damage
-            print(f"{self.name} attacks {opponent.name} for {damage} damage!")
+            self.double_damage(opponent)
             
         elif action == "2":
             print(f"{self.name} used Healing Song!")

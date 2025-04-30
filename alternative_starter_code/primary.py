@@ -45,6 +45,7 @@ def battle(player, wizard):
         elif choice == '4':
             player.display_stats()
         elif choice == '5':
+            print(f"{player.name} has retreated from battle. Game over.")
             break
         else:
             print("Invalid choice. Try again.")
@@ -63,7 +64,7 @@ def battle(player, wizard):
 def rules():
     print("\nWelcome to Wizard Smackdown!")
     print("The interactive battle game where you face off against the Evil Wizard.")
-    print("This game has been craeted using Python, by Josh Canterbury.")
+    print("This game has been created using Python, by Josh Canterbury.")
     print("\nGame Rules:")
     print("1. Each character has health and attack power.")
     print("2. Players can attack, use special abilities, heal, or view stats during their turn.")
@@ -74,14 +75,22 @@ def rules():
     
 def main():
     rules()
-    player = create_character()
-    print(f"\nWelcome, {player.name}!")
-    print(f"You have chosen the {player.__class__.__name__} class!")
-    print("Here are your starting stats:")
-    player.display_stats()
-    print("Prepare for battle!")
-    wizard = EvilWizard("The Dark Wizard")
-    battle(player, wizard)
+    
+    while True:
+        player = create_character()
+        print(f"\nWelcome, {player.name}!")
+        print(f"You have chosen the {player.__class__.__name__} class!")
+        print("Here are your starting stats:")
+        player.display_stats()
+        print("Prepare for battle!")
+        
+        wizard = EvilWizard("The Dark Wizard")
+        battle(player, wizard)
+        
+        play_again = input("Do you want to play again? (yes/no): ").strip().lower()
+        if play_again != 'yes':
+            print("Thanks for playing!")
+            break
 
 if __name__ == "__main__":
     main()
