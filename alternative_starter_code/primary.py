@@ -1,7 +1,7 @@
 from classes import *
 
 def create_character():
-    print("Choose your character class:")
+    print("\nChoose your character class:")
     print("1. Barbarian")
     print("2. Rogue")
     print("3. Ranger") 
@@ -32,6 +32,7 @@ def battle(player, wizard):
         print("2. Use Special Ability")
         print("3. Heal")
         print("4. View Stats")
+        print("5. Quit")
 
         choice = input("Choose an action: ")
 
@@ -43,6 +44,8 @@ def battle(player, wizard):
             player.heal()
         elif choice == '4':
             player.display_stats()
+        elif choice == '5':
+            break
         else:
             print("Invalid choice. Try again.")
 
@@ -56,9 +59,27 @@ def battle(player, wizard):
 
     if wizard.health <= 0:
         print(f"The wizard {wizard.name} has been defeated by {player.name}!")
-
+        
+def rules():
+    print("\nWelcome to Wizard Smackdown!")
+    print("The interactive battle game where you face off against the Evil Wizard.")
+    print("This game has been craeted using Python, by Josh Canterbury.")
+    print("\nGame Rules:")
+    print("1. Each character has health and attack power.")
+    print("2. Players can attack, use special abilities, heal, or view stats during their turn.")
+    print("3. Attack damage is randomly generated within the character's attack power range (sort of like rolling a dice).")
+    print("4. The wizard regenerates a small amount of health after each turn.")
+    print("5. The game ends when either the player or the wizard's health reaches zero.")
+    print("\nHave fun and good luck!")
+    
 def main():
+    rules()
     player = create_character()
+    print(f"\nWelcome, {player.name}!")
+    print(f"You have chosen the {player.__class__.__name__} class!")
+    print("Here are your starting stats:")
+    player.display_stats()
+    print("Prepare for battle!")
     wizard = EvilWizard("The Dark Wizard")
     battle(player, wizard)
 
